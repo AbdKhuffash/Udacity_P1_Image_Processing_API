@@ -2,7 +2,7 @@
 
 
 
-![Last Commit](https://img.shields.io/github/last-commit/USERNAME/UDACITY_P1_IMAGE_PROCESSING_API?color=blue&label=last%20commit) 
+![Last Commit](https://img.shields.io/github/last-commit/AbdKhuffash/Udacity_P1_Image_Processing_API?color=blue&label=last%20commit)
 ![TypeScript](https://img.shields.io/badge/typescript-81.7%25-blue) 
 ![Languages](https://img.shields.io/badge/languages-2-brightgreen)
 
