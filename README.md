@@ -1,8 +1,8 @@
-# UDACITY_P1_IMAGE_PROCESSING
+# UDACITY_P1_IMAGE_PROCESSING_API
 
 > Transform Images Instantly, Elevate Visual Experiences  
 
-![Last Commit](https://img.shields.io/github/last-commit/USERNAME/REPO?color=blue&label=last%20commit) 
+![Last Commit](https://img.shields.io/github/last-commit/USERNAME/UDACITY_P1_IMAGE_PROCESSING_API?color=blue&label=last%20commit) 
 ![TypeScript](https://img.shields.io/badge/typescript-81.7%25-blue) 
 ![Languages](https://img.shields.io/badge/languages-2-brightgreen)
 
@@ -26,24 +26,80 @@
 
 ---
 
-## 📖 Features
-- Resize, crop, and optimize images instantly.
-- REST API with TypeScript + Express.
-- Built-in linting, formatting, and testing.
+## 📑 Table of Contents
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Testing](#testing)
 
 ---
 
-## ⚡ Quick Start
+## 📖 Overview
+
+**Udacity_P1_Image_Processing_API** is a developer-focused tool that simplifies image uploading, processing, and manipulation through a scalable API.  
+Built with **TypeScript** and powered by **Sharp**, it ensures efficient, high-quality image transformations suitable for modern web applications.
+
+### Why Udacity_P1_Image_Processing_API?
+This project aims to deliver a reliable, maintainable image processing solution. The core features include:
+
+- 🖼️ **Image Transformation**: Resize and manipulate images dynamically with minimal effort.  
+- ⚡ **Performance Optimization**: Caching middleware reduces redundant processing for faster responses.  
+- ✅ **Robust Validation**: Middleware ensures input correctness, preventing errors downstream.  
+- 🧪 **Automated Testing**: Integrated Jasmine setup guarantees code quality and stability.  
+- 🏗️ **Modular Architecture**: Organized routing and service layers facilitate scalability and maintainability.  
+- 🔒 **Type Safety**: TypeScript configurations promote robust, error-resistant development.  
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+This project requires the following dependencies:
+
+- Programming Language: **TypeScript**  
+- Package Manager: **npm**
+
+---
+
+### ⚙️ Installation
+Build **Udacity_P1_Image_Processing_API** from the source and install dependencies:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/USERNAME/UDACITY_P1_Image_Processing_API
+   ```
+
+2. **Navigate to the project directory:**
+   ```bash
+   cd UDACITY_P1_IMAGE_PROCESSING_API
+   ```
+
+3. **Install the dependencies:**
+   ```bash
+   npm install
+   ```
+
+---
+
+### ▶️ Usage
+Run the project with:
 
 ```bash
-# install dependencies
-npm install
+npm start
+```
 
-# start development server
-npm run dev
+---
 
-# build
-npm run build
+### 🧪 Testing
+The project uses the **Jasmine** test framework. Run the test suite with:
 
-# test
-npm run test
+```bash
+npm test
+```
+
+---
+
+## 🔙 Return
+[Back to Top](#udacity_p1_image_processing_api)
