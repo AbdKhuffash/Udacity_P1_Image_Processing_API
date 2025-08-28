@@ -1,6 +1,6 @@
 # UDACITY_P1_IMAGE_PROCESSING_API
 
-> Transform Images Instantly, Elevate Visual Experiences  
+
 
 ![Last Commit](https://img.shields.io/github/last-commit/USERNAME/UDACITY_P1_IMAGE_PROCESSING_API?color=blue&label=last%20commit) 
 ![TypeScript](https://img.shields.io/badge/typescript-81.7%25-blue) 
@@ -38,10 +38,9 @@
 
 ## 📖 Overview
 
-**Udacity_P1_Image_Processing_API** is a developer-focused tool that simplifies image uploading, processing, and manipulation through a scalable API.  
-Built with **TypeScript** and powered by **Sharp**, it ensures efficient, high-quality image transformations suitable for modern web applications.
+**Image Processing API** :Built with **TypeScript** and powered by **Sharp**, it ensures efficient, high-quality image transformations suitable for modern web applications.
 
-### Why Udacity_P1_Image_Processing_API?
+
 This project aims to deliver a reliable, maintainable image processing solution. The core features include:
 
 - 🖼️ **Image Transformation**: Resize and manipulate images dynamically with minimal effort.  
