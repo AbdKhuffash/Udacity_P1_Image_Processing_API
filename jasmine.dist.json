@@ -1,0 +1,23 @@
+{
+  "spec_dir": "dist",
+  "spec_files": ["**/*.spec.js"],
+  "helpers": ["tests/setupReporter.js"],
+  "random": false,
+  "stopSpecOnExpectationFailure": false,
+  "reporters": [
+    {
+      "name": "jasmine-spec-reporter#SpecReporter",
+      "options": {
+        "spec": {
+          "displaySuccessful": true,
+          "displayFailed": true,
+          "displayPending": true,
+          "displayDuration": true
+        },
+        "summary": {
+          "displayDuration": true
+        }
+      }
+    }
+  ]
+}

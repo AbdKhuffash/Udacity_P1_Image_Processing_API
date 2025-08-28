@@ -1,0 +1,52 @@
+{
+  "name": "udacityproject1_image-processing",
+  "version": "1.0.0",
+  "description": "Udacity Project 1 - Image Processing API",
+  "main": "dist/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "test": "npm run build && jasmine --config=jasmine.dist.json",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint": "eslint . --ext .ts --config eslint.config.cjs",
+    "lint:fix": "eslint . --ext .ts --fix --config eslint.config.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
+    "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@types/express": "^5.0.3",
+    "@types/jasmine": "^5.1.9",
+    "@types/jest": "^30.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.3.0",
+    "@types/supertest": "^6.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.3.0",
+    "jasmine": "^5.9.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "supertest": "^7.1.4",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "spec_dir": "src",
+  "spec_files": ["**/*.spec.ts"],
+  "helpers": [],
+  "requires": ["ts-node/register"],
+  "random": false,
+  "stopSpecOnExpectationFailure": false,
+  "reporters": [
+    {
+      "name": "jasmine-spec-reporter#SpecReporter",
+      "options": {
+        "spec": {
+          "displaySuccessful": true,
+          "displayFailed": true,
+          "displayPending": true,
+          "displayDuration": true
+        },
+        "summary": {
+          "displayDuration": true
+        }
+      }
+    }
+  ]
+}
