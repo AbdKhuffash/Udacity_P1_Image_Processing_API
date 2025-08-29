@@ -33,6 +33,7 @@
   - [Testing](#testing)
 - [API Usage](#api-usage)
 - [Caching Mechanism](#caching-mechanism)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -88,6 +89,8 @@ Run the project with:
 npm start
 ```
 
+By default the server runs on **http://localhost:3000** (unless changed in your environment).
+
 ---
 
 ### 🧪 Testing
@@ -101,46 +104,84 @@ npm test
 
 ## 🌐 API Usage
 
-Once the server is running, you can interact with the API directly from your browser or a tool like Postman.
+Once the server is running, you can interact with the API directly from your **browser** or a tool like **curl**/**Postman**.
 
-The main endpoint is:
-
+**Endpoint**
 ```
-http://localhost:3000/api/images?filename=<image_name>&width=<number>&height=<number>
-```
-
-### ✅ Example (Successful request)
-If you have an image called `fjord.jpg` inside the `images/full` folder, you can resize it like this:
-
-```
-http://localhost:3000/api/images?filename=fjord&width=200&height=200
+GET /api/images?filename=<image_name_with_extension>&width=<number>&height=<number>
 ```
 
-This will return the resized image and store a cached version for future requests.
+### ✅ Success Examples (from tests)
 
-### ❌ Example (Failure request)
-If you try to request a non-existing image:
+- **Resize an existing image (first call generates cache):**
+  ```
+  http://localhost:3000/api/images?filename=fjord.jpg&width=200&height=200
+  ```
+  - Response: `200 OK` with `Content-Type: image/jpeg`  
+  - Side effect: a cached file `fjord_200x200.jpg` is created in the thumbnails directory.
 
-```
-http://localhost:3000/api/images?filename=invalid&width=200&height=200
-```
+- **Serve from cache on subsequent call (fast):**
+  ```
+  http://localhost:3000/api/images?filename=fjord.jpg&width=200&height=200
+  ```
+  - Response: `200 OK` quickly, served from cache if it exists.
 
-The API will return an error response because the file does not exist.
+### ❌ Failure Examples (from tests)
+
+- **Missing required params (e.g., omit width/height):**
+  ```
+  http://localhost:3000/api/images?filename=fjord.jpg
+  ```
+  - Response: `400 Bad Request` with an error mentioning the missing `filename/width/height` parameter(s).
+
+- **Image not found:**
+  ```
+  http://localhost:3000/api/images?filename=does-not-exist.jpg&width=100&height=100
+  ```
+  - Response: `404 Not Found`.
+
+- **Invalid dimensions:**
+  ```
+  http://localhost:3000/api/images?filename=fjord.jpg&width=-1&height=100
+  ```
+  - Response: `400 Bad Request`.
+
+### 🧩 Service-level examples (programmatic usage)
+
+The internal `resizeJpg(input, width, height, outPath)` helper (used in tests) behaves as follows:
+
+- Creates a resized image for valid input and returns the output path (e.g., `.../thumb/fjord_123x77.jpg`).
+- Throws for non‑positive dimensions, unsupported extensions (e.g., `.png`), or when the source image is missing.
+
+These behaviors correspond to the HTTP examples above (bad inputs surface as `400/404` responses).
 
 ---
 
 ## 🗄️ Caching Mechanism
 
-The API includes a simple caching system to improve performance:
+The API includes a simple, effective caching system to improve performance:
 
-- When an image is processed for the first time, the resized version is saved inside the `images/thumb` directory.  
-- On subsequent requests with the same `filename`, `width`, and `height`, the API will serve the cached image directly instead of reprocessing it.  
-- This reduces CPU usage and response time significantly.  
+- **Where**: Cached images are saved in the thumbnails directory (e.g., `assets/thumb`).  
+- **Naming**: `<filename_without_ext>_<width>x<height>.jpg` (e.g., `fjord_200x200.jpg`).  
+- **When**: On the first request for a unique combination of `filename`, `width`, and `height`, the image is processed and cached.  
+- **Reuse**: Subsequent identical requests are served directly from the cached file, avoiding reprocessing.  
+- **Cleanup**: (Optional) You may delete cached files manually; they will be regenerated on next request.
 
-Example:
+**Example flow**
 
-1. First request to `/api/images?filename=fjord&width=200&height=200` → Image is resized and cached.  
-2. Second request to the same URL → Cached image is served instantly.  
+1. First request → `/api/images?filename=fjord.jpg&width=200&height=200`  
+   - Processes `assets/full/fjord.jpg` and writes `assets/thumb/fjord_200x200.jpg`  
+2. Second request → same URL  
+   - Reads and streams `assets/thumb/fjord_200x200.jpg` immediately
+
+---
+
+## 🔧 Troubleshooting
+
+- Ensure the source image exists in the **full** directory (e.g., `assets/full/fjord.jpg`).  
+- Confirm `width` and `height` are **positive integers**.  
+- Use a **.jpg** source image; other extensions are rejected by `resizeJpg`.  
+- If you change environment folders, make sure they match `ENV.ASSETS_FULL_DIR` and `ENV.ASSETS_THUMB_DIR`.
 
 ---
 
