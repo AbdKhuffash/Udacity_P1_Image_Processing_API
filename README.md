@@ -148,7 +148,7 @@ GET /api/images?filename=<image_name_with_extension>&width=<number>&height=<numb
 
 ### 🧩 Service-level examples (programmatic usage)
 
-The internal `resizeJpg(input, width, height, outPath)` helper (used in tests) behaves as follows:
+The internal `resizeJpg(input, width, height, outPath)` helper behaves as follows:
 
 - Creates a resized image for valid input and returns the output path (e.g., `.../thumb/fjord_123x77.jpg`).
 - Throws for non‑positive dimensions, unsupported extensions (e.g., `.png`), or when the source image is missing.
