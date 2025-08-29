@@ -111,7 +111,7 @@ Once the server is running, you can interact with the API directly from your **b
 GET /api/images?filename=<image_name_with_extension>&width=<number>&height=<number>
 ```
 
-### ✅ Success Examples (from tests)
+### ✅ Success Examples 
 
 - **Resize an existing image (first call generates cache):**
   ```
@@ -126,7 +126,7 @@ GET /api/images?filename=<image_name_with_extension>&width=<number>&height=<numb
   ```
   - Response: `200 OK` quickly, served from cache if it exists.
 
-### ❌ Failure Examples (from tests)
+### ❌ Failure Examples 
 
 - **Missing required params (e.g., omit width/height):**
   ```
