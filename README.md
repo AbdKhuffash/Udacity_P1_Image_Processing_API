@@ -1,7 +1,5 @@
 # UDACITY_P1_IMAGE_PROCESSING_API
 
-
-
 ![Last Commit](https://img.shields.io/github/last-commit/AbdKhuffash/Udacity_P1_Image_Processing_API?color=blue&label=last%20commit)
 ![TypeScript](https://img.shields.io/badge/typescript-81.7%25-blue) 
 ![Languages](https://img.shields.io/badge/languages-2-brightgreen)
@@ -33,13 +31,14 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [Testing](#testing)
+- [API Usage](#api-usage)
+- [Caching Mechanism](#caching-mechanism)
 
 ---
 
 ## 📖 Overview
 
 **Image Processing API** :Built with **TypeScript** and powered by **Sharp**, it ensures efficient, high-quality image transformations suitable for modern web applications.
-
 
 This project aims to deliver a reliable, maintainable image processing solution. The core features include:
 
@@ -97,6 +96,51 @@ The project uses the **Jasmine** test framework. Run the test suite with:
 ```bash
 npm test
 ```
+
+---
+
+## 🌐 API Usage
+
+Once the server is running, you can interact with the API directly from your browser or a tool like Postman.
+
+The main endpoint is:
+
+```
+http://localhost:3000/api/images?filename=<image_name>&width=<number>&height=<number>
+```
+
+### ✅ Example (Successful request)
+If you have an image called `fjord.jpg` inside the `images/full` folder, you can resize it like this:
+
+```
+http://localhost:3000/api/images?filename=fjord&width=200&height=200
+```
+
+This will return the resized image and store a cached version for future requests.
+
+### ❌ Example (Failure request)
+If you try to request a non-existing image:
+
+```
+http://localhost:3000/api/images?filename=invalid&width=200&height=200
+```
+
+The API will return an error response because the file does not exist.
+
+---
+
+## 🗄️ Caching Mechanism
+
+The API includes a simple caching system to improve performance:
+
+- When an image is processed for the first time, the resized version is saved inside the `images/thumb` directory.  
+- On subsequent requests with the same `filename`, `width`, and `height`, the API will serve the cached image directly instead of reprocessing it.  
+- This reduces CPU usage and response time significantly.  
+
+Example:
+
+1. First request to `/api/images?filename=fjord&width=200&height=200` → Image is resized and cached.  
+2. Second request to the same URL → Cached image is served instantly.  
 
 ---
 
