@@ -48,4 +48,3 @@ export async function getResizedImage(
     next(err);
   }
 }
-// (No CommonJS exports)
