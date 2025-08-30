@@ -3,28 +3,33 @@ import sharp from 'sharp';
 import { ENV } from '../config/env';
 import { fileExists, ensureDir, pathJoin } from '../utils/file';
 
+interface HttpError extends Error {
+  statusCode?: number;
+}
+
 export async function resizeJpg(
   filename: string,
   width: number,
   height: number,
   outputPath: string
 ): Promise<string> {
-  if (!filename.toLowerCase().endsWith('.jpg') && !filename.toLowerCase().endsWith('.jpeg')) {
-    const e = new Error('Only JPG/JPEG files are supported.');
-    (e as any).statusCode = 400;
+  const lower = filename.toLowerCase();
+  if (!lower.endsWith('.jpg') && !lower.endsWith('.jpeg')) {
+    const e: HttpError = new Error('Only JPG/JPEG files are supported.');
+    e.statusCode = 400;
     throw e;
   }
 
   const inputPath = pathJoin(ENV.ASSETS_FULL_DIR, filename);
   if (!fileExists(inputPath)) {
-    const e = new Error('Source image not found.');
-    (e as any).statusCode = 404;
+    const e: HttpError = new Error('Source image not found.');
+    e.statusCode = 404;
     throw e;
   }
 
-  if (width <= 0 || height <= 0) {
-    const e = new Error('Width and height must be positive numbers.');
-    (e as any).statusCode = 400;
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+    const e: HttpError = new Error('Width and height must be positive numbers.');
+    e.statusCode = 400;
     throw e;
   }
 
